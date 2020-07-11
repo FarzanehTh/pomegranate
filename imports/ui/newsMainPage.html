@@ -1,0 +1,100 @@
+<template name="newsMainPage">
+  {{#if articles}}
+    <div class="align"><img src="/pomegranate.svg" alt="pomegranate logo">
+    <h1>Articles Found:</h1></div>
+    {{#each article in articles}}
+      {{ >articlePage article=article }}
+    {{/each}}
+  {{else}}
+    {{>newsFilterForm}}
+  {{/if}}
+</template>
+
+<template name="articlePage">
+  <div class="newsCard">
+    <p>Source:<strong class="sourceFont"> {{article.source.name}}</strong></p>
+    <div class="align-space">
+      <p class="atricleTitle"><strong>{{article.title}}</strong></p>
+      <p class="sentiment-span">Sentiment Score: <strong>{{article.sentiment}}</strong> </p>
+    </div>
+    <p>{{article.content}}</p>
+   <a href=" {{article.url}}" target="_blank">Read more</a>
+  </div>
+</template>
+
+<template name="newsFilterForm">
+<div class="align"><img src="/pomegranate.svg" alt="pomegranate logo">
+  <h1>Search for News you want to read today</h1></div>
+  <form action="" id="newsSearchForm">
+    <div class="form-elements-container">
+      <div>
+        <p><label for="countries">Country</label></p>
+        <select name="countries" id="countries" class="area-content">
+          <option value="ca">Canada</option>
+          <option value="us">United States</option>
+          <option value="uk">United Kingdom</option>
+          <option value="tr">Turkey</option>
+          <option value="fr">French</option>
+        </select>
+      </div>
+      <div>
+        <p><label for="language">Language of article</label></p>
+        <select name="language" id="language" class="area-content">
+          <option value="en">English</option>
+          <option value="ar">Arabic</option>
+          <option value="fr">French</option>
+          <option value="tr">Turkish</option>
+        </select>
+      </div>
+      <div>
+       <p><label for="articleKeyword">Keyword/Phrase used in article</label></p>
+        <input type="text" id="articleKeyword" name="articleKeyword" class="area-content"><br><br>
+      </div>
+    </div>
+    <div class="form-elements-container">
+      <div>
+        <p><label for="articleCategory">Category</label></p>
+        <select name="articleCategory" id="articleCategory" class="area-content">
+          <option value="business">business</option>
+          <option value="entertainment">entertainment</option>
+          <option value="health">health</option>
+          <option value="science">science</option>
+          <option value="sports">sports</option>
+          <option value="technology">technology</option>
+        </select>
+      </div>
+      <div>
+        <p><label for="articleSource">Source</label></p>
+        <input type="text" id="articleSource" name="articleSource" class="area-content"><br><br>
+      </div>
+      <div>
+        <p><label for="datePublished">Date Published</label></p>
+          <input type="date" id="datePublished" name="datePublished" class="area-content">
+      </div>
+    </div>
+    <div class="form-elements-container">
+      <div>
+        <p><label for="sortArticle">Sort By</label></p>
+        <select name="sortArticle" id="sortArticle" class="area-content">
+          <option value="datePublished" class="area-content">Date Published</option>
+          <option value="relevancyToKeyword">Relevancy To Keyword</option>
+          <option value="popularityOfSource">Popularity of Source</option>
+        </select>
+      </div>
+      <div>
+        <p><label for="articleSentiment">Sentiment</label></p>
+        <select name="articleSentiment" id="articleSentiment" class="area-content">
+          <option value="positive">Positive</option>
+          <option value="negative">Negative</option>
+          <option value="Both">Both</option>
+        </select>
+      </div>
+    </div>
+    <div class="centered"><input class="btns" type="submit" value="SEARCH"></div>
+  </form>
+  <div class="centered footer-span">
+    <p class="footer-span">
+      Powered by: <a href="https://newsapi.org/">newsapi.org</a>
+    </p>
+  </div>
+</template>
